@@ -14,7 +14,7 @@ app.use(
 
 app.use(express.json());
 
-app.use("/api/users", userRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 export default app;

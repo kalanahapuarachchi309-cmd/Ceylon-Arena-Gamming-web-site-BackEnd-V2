@@ -9,14 +9,15 @@ export interface IGame {
   gameId: string;
   teamName: string;
   player2Name: string;
-  player2Id: string;
+  player2GameId: string;
   player3Name: string;
-  player3Id: string;
+  player3GameId: string;
   player4Name: string;
-  player4Id: string;
+  player4GameId: string;
 }
 
 export interface IUser extends Document {
+  _id: mongoose.Types.ObjectId;
   playerName: string;
   role: string;
   email: string;
@@ -24,6 +25,7 @@ export interface IUser extends Document {
   promoCode?: string;
   address: string;
   password: string;
+  status: boolean;
   games: IGame[];
   refreshToken: string;
 }
@@ -34,11 +36,11 @@ const GameSchema = new Schema<IGame>(
     gameId: String,
     teamName: String,
     player2Name: String,
-    player2Id: String,
+    player2GameId: String,
     player3Name: String,
-    player3Id: String,
+    player3GameId: String,
     player4Name: String,
-    player4Id: String
+    player4GameId: String
   },
   { _id: false }
 );
@@ -52,6 +54,7 @@ const UserSchema = new Schema<IUser>(
     promoCode: { type: String, required: false },
     address: { type: String, required: true },
     password: { type: String, required: true },
+    status: { type: Boolean, default: false },
     games: [GameSchema],
     refreshToken: { type: String }
   },
