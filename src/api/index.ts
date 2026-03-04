@@ -1,7 +1,9 @@
-import app from "../app";
-import connectDB from "../config/db";
+import { Request, Response } from "express";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: Request,
+  res: Response
+) {
   await connectDB();
   return app(req, res);
 }
