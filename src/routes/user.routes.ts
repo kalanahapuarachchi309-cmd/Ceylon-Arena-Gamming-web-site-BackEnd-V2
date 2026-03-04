@@ -5,7 +5,7 @@ import multer from "multer";
 const router = Router();
 
 const upload = multer({
-  dest: "uploads/",
+  storage: multer.memoryStorage(),
   fileFilter: (_req, file, cb) => {
     if (!file.mimetype.startsWith("image/")) {
       cb(new Error("Only image files are allowed"));
