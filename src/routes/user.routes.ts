@@ -1,19 +1,8 @@
 import { Router } from "express";
 import { register, login, refreshToken, logout, registerWithBankPayment } from "../controllers/user.controller";
-import multer from "multer";
+import { upload } from "../middleware/upload";
 
 const router = Router();
-
-const upload = multer({
-  storage: multer.memoryStorage(),
-  fileFilter: (_req, file, cb) => {
-    if (!file.mimetype.startsWith("image/")) {
-      cb(new Error("Only image files are allowed"));
-    } else {
-      cb(null, true);
-    }
-  }
-});
 
 router.post("/register", register);
 router.post(
